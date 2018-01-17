@@ -14,22 +14,31 @@ var Queue = function() {
   };
 
   someInstance.dequeue = function() {
-    // if (count - lowestCount === 0){
-    //   return undefined;
-    // }
-    var toDelete = storage[0]
-    console.log(storage)
-    delete storage[0]
-    lowestCount += 1;
+
+    if (storage[0] === undefined){
+      return undefined
+      // i think this is where we need to focus
+    };
+
+    // var toDelete = storage[0]
+    // console.log(storage)
+    // delete storage[0]
+    // lowestCount += 1;
+    // count -= 1;
+    // console.log(storage)
+    // return toDelete;
+    var toDelete = storage[lowestCount];
+    delete storage[lowestCount];
+    for (key in storage){
+      storage[key] = storage[key-1];
+    }
     count -= 1;
-    debugger;
-    console.log(storage)
+    console.log(toDelete);
     return toDelete;
   };
 
   someInstance.size = function() {
     return count < 0 ? 0 : count;
   };
-  console.log(storage)
   return someInstance;
 };
