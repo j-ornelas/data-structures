@@ -17,7 +17,6 @@ var Queue = function() {
 
     if (storage[0] === undefined){
       return undefined
-      // i think this is where we need to focus
     };
 
     // var toDelete = storage[0]
@@ -27,13 +26,25 @@ var Queue = function() {
     // count -= 1;
     // console.log(storage)
     // return toDelete;
-    var toDelete = storage[lowestCount];
-    delete storage[lowestCount];
+
+    /*
+    temporarily saves the last element
+    removes the last element (storage[0])
+    so now, there's no storage[0]
+    storage [0] = storage[key + 1]
+    if storage[key] is undefined; break
+    */
+    var toDelete = storage[0];
+    console.log(storage)
+    delete storage[0];
     for (key in storage){
-      storage[key] = storage[key-1];
+      if (storage[key] === undefined){
+        break;
+      }
+      storage[key - 1] = storage[key];
     }
     count -= 1;
-    console.log(toDelete);
+    console.log(storage);
     return toDelete;
   };
 
