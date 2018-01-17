@@ -7,16 +7,20 @@ var Stack = function() {
 
   // Implement the methods below
   someInstance.push = function(value) {
+    storage[count] = value
     count += 1;
+    return storage[count]
   };
 
   someInstance.pop = function() {
+    delete storage[count]
     count -= 1;
+    return storage[count]
+   
   };
 
   someInstance.size = function() {
-    return count;
+    return count < 0 ? 0 : count;
   };
-
   return someInstance;
 };
