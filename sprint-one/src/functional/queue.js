@@ -8,9 +8,9 @@ var Queue = function() {
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
-    storage[count] = value
+    storage[count] = value;
     count += 1;
-    return storage[count]
+    return storage[count];
   };
 
   someInstance.dequeue = function() {
@@ -23,9 +23,9 @@ var Queue = function() {
     */
     var toDelete = storage[0];
     delete storage[0];
-    
-    for (key in storage){
-      if (storage[key] === undefined){
+
+    for (key in storage) {
+      if (storage[key] === undefined) {
         break;
       }
       storage[key - 1] = storage[key];
