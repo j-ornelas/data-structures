@@ -5,7 +5,7 @@ var Graph = function() {
   this.nodes = {};
   this.edges = {};
   this.nodeNum = 0;
-  console.log(this)
+  console.log(this);
 };
 
 // Add a node to the graph, passing in the node's value.
@@ -33,7 +33,7 @@ Graph.prototype.removeNode = function(target) {
   }
   for (var key in this.edges) {
     if (key.includes('' + target)) {
-      delete this.edges[key]
+      delete this.edges[key];
     }
   }
 };
@@ -77,6 +77,7 @@ Graph.prototype.forEachNode = function(cb) {
   }
 };
 
+// setTimeout()
 /*
  * Complexity: What is the time complexity of the above functions?
  */
