@@ -40,12 +40,33 @@ BinarySearchTree.prototype.insert = function(value) {
   
 };
 
-BinarySearchTree.prototype.contains = function() {
-
+BinarySearchTree.prototype.contains = function(target) {
+  var found = false;
+  var search = function(node) {
+    if (target === node.value) {
+      found = true;
+    } else if (target > node.value && node.right !== null) {
+      search(node.right);
+    } else if (target < node.value && node.left !== null) {
+      search(node.left);
+    }
+  };
+  search(this);
+  return found;
 };
 
-BinarySearchTree.prototype.depthFirstLog = function() {
-
+BinarySearchTree.prototype.depthFirstLog = function(cb) {
+  // var parent
+  var callback = function(node) {
+    cb(node.value);
+    if (node.left !== null) {
+      callback(node.left);
+    }
+    if (node.right !== null) {
+      callback(node.right);
+    }
+  };
+  callback(this);
 };
 /*
  * Complexity: What is the time complexity of the above functions?
