@@ -40,5 +40,62 @@ describe('tree', function() {
     expect(tree.contains(7)).to.equal(true);
     expect(tree.contains(8)).to.equal(true);
   });
+  // this is the start of our own Tests
+  it('should properly add a "parent" property to each child', function() {
+    tree.addChild(5);
+    tree.children[0].addChild(6);
+    expect(tree.children[0].children[0].parent.value).to.equal(5);
+  });
+
+  it('it should return the disassociated node', function() {
+    tree.addChild(5);
+    tree.children[0].addChild(4);
+    tree.children[0].addChild(3);
+    tree.children[0].children[0].addChild(2);
+    tree.children[0].children[0].addChild(1);
+    var node4 = tree.children[0].children[0];
+    expect(node4.removeFromParent()).to.equal(node4);
+  });
+
+  it('the disassociated node should have a parent value of null', function() {
+    tree.addChild(5);
+    tree.children[0].addChild(4);
+    tree.children[0].addChild(3);
+    tree.children[0].children[0].addChild(2);
+    tree.children[0].children[0].addChild(1);
+    var node4 = tree.children[0].children[0];
+    node4.removeFromParent();
+    expect(node4.parent).to.equal(null);
+  });
+
+  it('check that the node was removed from the parent\'s children array', function() {
+    tree.addChild(5);
+    tree.children[0].addChild(4);
+    tree.children[0].addChild(3);
+    tree.children[0].children[0].addChild(2);
+    tree.children[0].children[0].addChild(1);
+    var node4 = tree.children[0].children[0];
+    node4.removeFromParent();
+    expect(tree.children[0].contains(4)).to.equal(false);
+  });
+
+  it('should traverse and apply callback properly', function() {
+    var double = function(node) {
+      node.value = node.value * 2;
+    };
+
+    tree.addChild(5);
+    tree.children[0].addChild(4);
+    tree.children[0].addChild(3);
+    tree.children[0].children[0].addChild(2);
+    tree.children[0].children[0].addChild(1);
+    tree.traverse(double);
+
+    expect(tree.children[0].value).to.equal(10);
+    expect(tree.children[0].children[0].value).to.equal(8);
+    expect(tree.children[0].children[1].value).to.equal(6);
+    expect(tree.children[0].children[0].children[0].value).to.equal(4);
+    expect(tree.children[0].children[0].children[1].value).to.equal(2);
+  });
 
 });
