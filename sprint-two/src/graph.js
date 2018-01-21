@@ -4,7 +4,6 @@ var Graph = function() {
   this.nodes = {};
   this.edges = {};
   this.nodeNum = 0;
-  console.log(this);
 };
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(value) {

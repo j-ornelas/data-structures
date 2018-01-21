@@ -1,7 +1,6 @@
 var HashTable = function() {
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
-  console.log(this)
 };
 
 HashTable.prototype.insert = function(k, v) {
