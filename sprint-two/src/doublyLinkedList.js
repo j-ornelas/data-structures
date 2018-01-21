@@ -12,11 +12,9 @@ var DoublyLinkedList = function() {
       this.head = node;
       this.tail = node;
     } 
-
     var previousNode = this.tail;
     previousNode.next = node;
     this.tail = node;
-    
   };
 
   list.removeHead = function() {
@@ -52,4 +50,3 @@ var Node = function(value) {
   node.previous = null;
   return node;
 };
-
