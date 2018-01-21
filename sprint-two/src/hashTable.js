@@ -1,5 +1,3 @@
-
-
 var HashTable = function() {
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
@@ -13,14 +11,12 @@ HashTable.prototype.insert = function(k, v) {
     this._storage.set(index, [[k, v]]);
     return; 
   } 
-  // else, if any element in array[0] === k
   for (var i = 0; i < bucket.length; i++) {
     if (bucket[i][0] === k) {
       bucket[i][1] = v;
     }
-  } // if bucket[bucket.length - 1] =/= [k,v]  ???
-  bucket.push([k, v]); // if tuple exists in the bucket
-  
+  }
+  bucket.push([k, v]);
 };
 
 HashTable.prototype.retrieve = function(k) {
@@ -31,7 +27,6 @@ HashTable.prototype.retrieve = function(k) {
       return bucket[i][1];
     }
   }
-  // return 'error, item was not found!';
 };
 
 HashTable.prototype.remove = function(k) {
@@ -45,11 +40,6 @@ HashTable.prototype.remove = function(k) {
   }
   this._storage.set(index, acc);
 };
-
-
-
 /*
  * Complexity: What is the time complexity of the above functions?
  */
-
-
