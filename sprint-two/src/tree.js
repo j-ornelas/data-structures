@@ -1,9 +1,6 @@
 var Tree = function(value) {
   var newTree = {};
   newTree.value = value;
-  // newTree.parent = null
-
-  // your code here
   newTree.children = [];
   newTree.addChild = treeMethods.addChild;
   newTree.contains = treeMethods.contains;
